@@ -1,6 +1,6 @@
 ---
 applications:
-- name: paltracker
+- name: pal-tracker
   path: build/libs/pal-tracker.jar
   routes:
     - route: peppercold.cfapps.io
