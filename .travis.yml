@@ -1,5 +1,4 @@
-dist: trusty
-sudo: false
+dist: xenial
 notifications:
   email: false
 env:
@@ -13,7 +12,9 @@ jobs:
       language: java
       jdk: openjdk11
       install: skip
-      script: ./gradlew clean build
+      script:
+        - ./gradlew clean
+        - ./gradlew build
       before_deploy:
         - echo "^^^^^^^oooo  $TRAVIS_BUILD_NUMBER"
         - git config --local user.name "Travis CI"
@@ -24,7 +25,7 @@ jobs:
         provider: releases
         api_key: $GITHUB_OAUTH_TOKEN
         file: "build/libs/pal-tracker.jar"
-        skip_cleanup: true
+        cleanup: false
     - stage: deploy to cf
       language: bash
       script:
